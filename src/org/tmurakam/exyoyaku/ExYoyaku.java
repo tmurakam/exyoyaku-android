@@ -2,11 +2,11 @@ package org.tmurakam.exyoyaku;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.webkit.WebView;
 import android.widget.LinearLayout;
+import android.webkit.*;
 
 public class ExYoyaku extends Activity {
-	private WebView webView;
+	WebView webView;
 	
     /** Called when the activity is first created. */
     @Override
@@ -15,6 +15,7 @@ public class ExYoyaku extends Activity {
         //setContentView(R.layout.main);
         
         webView = new WebView(this);
+        webView.setWebViewClient(new ExWebViewClient());
         webView.setLayoutParams(new LinearLayout.LayoutParams(
         		LinearLayout.LayoutParams.FILL_PARENT, 
         		LinearLayout.LayoutParams.FILL_PARENT));
