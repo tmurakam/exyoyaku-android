@@ -15,7 +15,9 @@ public class ExYoyaku extends Activity {
         //setContentView(R.layout.main);
         
         webView = new WebView(this);
-        webView.setWebViewClient(new ExWebViewClient());
+        //webView.setWebViewClient(new ExWebViewClient());
+        webView.setWebViewClient(new WebViewClient());
+        webView.setWebChromeClient(new ExWebChromeClient());
         webView.setLayoutParams(new LinearLayout.LayoutParams(
         		LinearLayout.LayoutParams.FILL_PARENT, 
         		LinearLayout.LayoutParams.FILL_PARENT));
