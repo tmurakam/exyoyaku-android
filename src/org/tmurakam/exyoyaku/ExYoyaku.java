@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 import android.webkit.*;
 
 public class ExYoyaku extends Activity {
-	WebView webView;
+    WebView webView;
 	
     /** Called when the activity is first created. */
     @Override
@@ -22,6 +22,6 @@ public class ExYoyaku extends Activity {
         setContentView(webView);
         
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("http://expy.jp");
+        webView.loadUrl("http://expy.jp/member/login/index.html");
     }
 }
