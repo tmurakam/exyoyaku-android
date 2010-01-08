@@ -20,8 +20,11 @@ public class ExYoyaku extends Activity {
         		LinearLayout.LayoutParams.FILL_PARENT, 
         		LinearLayout.LayoutParams.FILL_PARENT));
         setContentView(webView);
-        
-        webView.getSettings().setJavaScriptEnabled(true);
+
+        WebSettings s = webView.getSettings();
+        s.setBuiltInZoomControls(true);
+        s.setJavaScriptEnabled(true);
+
         webView.loadUrl("http://expy.jp/member/login/index.html");
     }
 }
