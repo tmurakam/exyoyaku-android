@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.*;
 import android.widget.*;
 import android.content.SharedPreferences;
+import android.content.Intent;
 
 public class ConfigView extends Activity {
 	private EditText editUserId;
@@ -14,8 +15,8 @@ public class ConfigView extends Activity {
 	@Override
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
-		
 		setContentView(R.layout.config);
+		
 		editUserId = (EditText)findViewById(R.id.EditUserId);
 		editPassword = (EditText)findViewById(R.id.EditPassword);
 		
@@ -36,6 +37,8 @@ public class ConfigView extends Activity {
 				e.putString("Password", s);
 				e.commit();
 				
+				Intent intent = new Intent();
+				setResult(RESULT_OK, intent);
 				finish();
 			}
 		});

@@ -11,11 +11,11 @@ import android.util.Log;public class ExWebChromeClient extends WebChromeClient {
         Log.d("ExYoyaku", "onProgressChanged = " + progress + " " + wv.getUrl());
         if (progress != 100) return;
 
-        String url = wv.getUrl();
-        if (url.indexOf("http://expy.jp/member/login/") >= 0) {
-            autoLogin(wv);
+        if (autoLogin(wv)) {
+        	return;
         }
-        else if (url.indexOf("https://shinkansen1.jr-central.co.jp/RSV_P") >= 0) {
+
+        if (wv.getUrl().indexOf("https://shinkansen1.jr-central.co.jp/RSV_P") >= 0) {
             fixPage(wv);
         }
     }
@@ -24,8 +24,12 @@ import android.util.Log;public class ExWebChromeClient extends WebChromeClient {
     	pref = p;
     }
     
-    private void autoLogin(WebView wv) {
+    public boolean autoLogin(WebView wv) {
         String js, fmt;
+        
+        if (wv.getUrl().indexOf("http://expy.jp/member/login") < 0) {
+        	return false;
+        }
         
         String uid = pref.getString("UserId", "");
         String pass = pref.getString("Password", "");
@@ -38,6 +42,8 @@ import android.util.Log;public class ExWebChromeClient extends WebChromeClient {
         fmt = "javascript:document.getElementById(\"password%d\").value=\"%s\"";
         js = String.format(fmt, 1, pass);
         runJs(wv, js);
+        
+        return true;
     }
 
     private void fixPage(WebView wv) {

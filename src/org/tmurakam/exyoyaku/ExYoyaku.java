@@ -10,7 +10,9 @@ import android.view.MenuItem;
 import android.content.SharedPreferences;
 
 public class ExYoyaku extends Activity {
-    WebView webView;
+    private WebView webView;
+    private ExWebChromeClient webChromeClient;
+    private static final int SHOW_CONFIGVIEW = 0;
 	
     /** Called when the activity is first created. */
     @Override
@@ -24,9 +26,9 @@ public class ExYoyaku extends Activity {
         //webView.setWebViewClient(new ExWebViewClient());
         webView.setWebViewClient(new WebViewClient());
         
-        ExWebChromeClient wcc = new ExWebChromeClient();
-        wcc.setPref(pref);
-        webView.setWebChromeClient(wcc);
+        webChromeClient = new ExWebChromeClient();
+        webChromeClient.setPref(pref);
+        webView.setWebChromeClient(webChromeClient);
         
         webView.setLayoutParams(new LinearLayout.LayoutParams(
         		LinearLayout.LayoutParams.FILL_PARENT, 
@@ -38,10 +40,6 @@ public class ExYoyaku extends Activity {
         s.setJavaScriptEnabled(true);
 
         webView.loadUrl("http://expy.jp/member/login/index.html");
-        
-        // test
-        //Intent test = new Intent(this, ConfigView.class);
-        //startActivity(test);
     }
     
     @Override
@@ -57,10 +55,18 @@ public class ExYoyaku extends Activity {
     	switch (item.getItemId()) {
     	case 0:
     		Intent config = new Intent(this, ConfigView.class);
-    		startActivity(config);
+    		startActivityForResult(config, SHOW_CONFIGVIEW);
     		break;
     	}
     	return super.onOptionsItemSelected(item);
     }
     
+    @Override
+    protected void onActivityResult(int reqCode, int resCode, Intent data) {
+    	if (reqCode == SHOW_CONFIGVIEW) {
+    		if (resCode == RESULT_OK) {
+    			webChromeClient.autoLogin(webView);
+    		}
+    	}
+    }
 }
