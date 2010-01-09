@@ -12,7 +12,13 @@
             </intent-filter>
         </activity>
 
-    </application>
+    <activity android:name=".ConfigView" android:label="Config">
+    	<intent-filter>
+    		<action android:name="android.intent.action.MAIN"></action>
+			<category android:name="android.intent.category.LAUNCHER"></category>
+		</intent-filter>
+	</activity>
+</application>
     <uses-sdk android:minSdkVersion="3" />
 
 

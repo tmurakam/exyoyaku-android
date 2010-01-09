@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.webkit.*;
+import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuItem;
 
 public class ExYoyaku extends Activity {
     WebView webView;
@@ -28,5 +31,28 @@ public class ExYoyaku extends Activity {
         s.setJavaScriptEnabled(true);
 
         webView.loadUrl("http://expy.jp/member/login/index.html");
+        
+        // test
+        //Intent test = new Intent(this, ConfigView.class);
+        //startActivity(test);
     }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	super.onCreateOptionsMenu(menu);
+    	menu.add(0, 0, Menu.NONE, "Config");
+    	return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	switch (item.getItemId()) {
+    	case 0:
+    		Intent config = new Intent(this, ConfigView.class);
+    		startActivity(config);
+    		break;
+    	}
+    	return super.onOptionsItemSelected(item);
+    }
+    
 }

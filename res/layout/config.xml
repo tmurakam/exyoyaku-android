@@ -1,0 +1,6 @@
+<LinearLayout android:id="@+id/LinearLayout01" android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"><TextView android:id="@+id/TextView01" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="User ID"></TextView>
+<EditText android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/EditUserId"></EditText><TextView android:id="@+id/TextView02" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Password"></TextView>
+
+<EditText android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/EditPassword" android:inputType="textPassword"></EditText>
+<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/ButtonOk" android:text="OK"></Button>
+</LinearLayout>
