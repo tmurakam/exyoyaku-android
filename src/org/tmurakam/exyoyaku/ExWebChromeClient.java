@@ -1,7 +1,11 @@
 package org.tmurakam.exyoyaku;
 
 import android.webkit.*;
+import android.content.SharedPreferences;
+
 import android.util.Log;public class ExWebChromeClient extends WebChromeClient {
+	private SharedPreferences pref;
+	
     @Override
     public void onProgressChanged(WebView wv, int progress) {
         Log.d("ExYoyaku", "onProgressChanged = " + progress + " " + wv.getUrl());
@@ -16,16 +20,23 @@ import android.util.Log;public class ExWebChromeClient extends WebChromeClient {
         }
     }
 
+    public void setPref(SharedPreferences p) {
+    	pref = p;
+    }
+    
     private void autoLogin(WebView wv) {
         String js, fmt;
+        
+        String uid = pref.getString("UserId", "");
+        String pass = pref.getString("Password", "");
 
         // auto login
         fmt = "javascript:document.getElementById(\"user_id%d\").value=\"%s\"";
-        js = String.format(fmt, 1, "459734xxxx");
+        js = String.format(fmt, 1, uid);
         runJs(wv, js);
 
         fmt = "javascript:document.getElementById(\"password%d\").value=\"%s\"";
-        js = String.format(fmt, 1, "");
+        js = String.format(fmt, 1, pass);
         runJs(wv, js);
     }
 

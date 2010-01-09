@@ -7,6 +7,7 @@ import android.webkit.*;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.content.SharedPreferences;
 
 public class ExYoyaku extends Activity {
     WebView webView;
@@ -17,10 +18,16 @@ public class ExYoyaku extends Activity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.main);
         
+        SharedPreferences pref = this.getSharedPreferences("userConfig", Activity.MODE_PRIVATE);
+        
         webView = new WebView(this);
         //webView.setWebViewClient(new ExWebViewClient());
         webView.setWebViewClient(new WebViewClient());
-        webView.setWebChromeClient(new ExWebChromeClient());
+        
+        ExWebChromeClient wcc = new ExWebChromeClient();
+        wcc.setPref(pref);
+        webView.setWebChromeClient(wcc);
+        
         webView.setLayoutParams(new LinearLayout.LayoutParams(
         		LinearLayout.LayoutParams.FILL_PARENT, 
         		LinearLayout.LayoutParams.FILL_PARENT));
@@ -40,7 +47,8 @@ public class ExYoyaku extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	super.onCreateOptionsMenu(menu);
-    	menu.add(0, 0, Menu.NONE, "Config");
+    	MenuItem item = menu.add(0, 0, Menu.NONE, "Config");
+    	item.setIcon(android.R.drawable.ic_menu_preferences);
     	return true;
     }
     

@@ -28,8 +28,15 @@ public class ConfigView extends Activity {
 			public void onClick(View v) {
 				SharedPreferences.Editor e;
 				e = pref.edit();
-				e.putString("UserId", editUserId.getText());
-				e.putString("Password", editPassword.getText());
+				String s;
+				
+				s = editUserId.getText().toString();
+				e.putString("UserId", s);
+				s = editPassword.getText().toString();
+				e.putString("Password", s);
+				e.commit();
+				
+				finish();
 			}
 		});
 	}
