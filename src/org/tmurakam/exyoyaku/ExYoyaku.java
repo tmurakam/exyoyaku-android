@@ -10,8 +10,8 @@ import android.view.MenuItem;
 import android.content.SharedPreferences;
 
 public class ExYoyaku extends Activity {
-    private WebView webView;
-    private ExWebChromeClient webChromeClient;
+    private static WebView webView = null;
+    private static ExWebChromeClient webChromeClient = null;
     private static final int SHOW_CONFIGVIEW = 0;
 	
     /** Called when the activity is first created. */
@@ -19,9 +19,14 @@ public class ExYoyaku extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.main);
+
+	if (webView != null) {
+	    setContentView(webView);
+	    return;
+	}
         
         SharedPreferences pref = this.getSharedPreferences("userConfig", Activity.MODE_PRIVATE);
-        
+
         webView = new WebView(this);
         //webView.setWebViewClient(new ExWebViewClient());
         webView.setWebViewClient(new WebViewClient());
