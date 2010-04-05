@@ -10,8 +10,8 @@ import android.view.MenuItem;
 import android.content.SharedPreferences;
 
 public class ExYoyaku extends Activity {
-    private static WebView webView = null;
-    private static ExWebChromeClient webChromeClient = null;
+    private WebView webView;
+    private ExWebChromeClient webChromeClient;
     private static final int SHOW_CONFIGVIEW = 0;
 	
     /** Called when the activity is first created. */
@@ -20,11 +20,6 @@ public class ExYoyaku extends Activity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.main);
 
-	if (webView != null) {
-	    setContentView(webView);
-	    return;
-	}
-        
         SharedPreferences pref = this.getSharedPreferences("userConfig", Activity.MODE_PRIVATE);
 
         webView = new WebView(this);
@@ -73,5 +68,11 @@ public class ExYoyaku extends Activity {
     			webChromeClient.autoLogin(webView);
     		}
     	}
+    }
+    
+    // for rotation change
+    @Override
+    public void onConfigurationChanged(android.content.res.Configuration newConfig) {
+    	super.onConfigurationChanged(newConfig);
     }
 }
