@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.webkit.*;
 import android.content.Intent;
+import android.view.Window;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.SharedPreferences;
@@ -29,7 +30,7 @@ public class ExYoyaku extends Activity {
         webView = new WebView(this);
 
         // ExWebViewClient を生成
-        webView.setWebViewClient(new ExWebViewClient());
+        webView.setWebViewClient(new ExWebViewClient(this));
         
         // ExWebChromeClent を生成
         webChromeClient = new ExWebChromeClient();

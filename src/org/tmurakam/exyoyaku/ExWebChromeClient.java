@@ -101,8 +101,8 @@ public class ExWebChromeClient extends WebChromeClient {
         js += "e = f2.document.getElementsByTagName(\"a\");";
         js += "for (var i = 0; i < e.length; i++) {";
         js += "  if (e[i].getAttribute(\"href\") == \" \") {";
-        js += "    e[i].setAttribute(\"href\", "javascript:void(0)");";
-        js += "}}"
+        js += "    e[i].setAttribute(\"href\", \"javascript:void(0)\");";
+        js += "}}";
 
         js += "}}";
 

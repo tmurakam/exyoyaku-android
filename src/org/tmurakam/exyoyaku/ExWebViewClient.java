@@ -2,6 +2,9 @@ package org.tmurakam.exyoyaku;
 
 import android.webkit.*;
 import android.content.SharedPreferences;
+import android.app.Activity;
+import android.app.Dialog;
+import android.graphics.Bitmap;
 
 import android.util.Log;
 
@@ -13,19 +16,21 @@ import android.util.Log;
 */
 public class ExWebViewClient extends WebViewClient {
     private Dialog dlg;
+    private Activity activity;
 
-    public ExWebViewClient() {
+    public ExWebViewClient(Activity act) {
         super();
+        activity = act;
         dlg = null;
     }
 
     @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
         super.onPageStarted(view, url, favicon);
-        setProgressBarIndeterminateVisibility(true);
+        activity.setProgressBarIndeterminateVisibility(true);
 
-        if (dlg) {
-            dig.dismiss();
+        if (dlg != null) {
+            dlg.dismiss();
         }
         dlg = new Dialog(view.getContext());
         dlg.setTitle("Loading...");
@@ -35,7 +40,7 @@ public class ExWebViewClient extends WebViewClient {
     @Override
         public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
-        setProgressBarIndeterminateVisibility(false);
+        activity.setProgressBarIndeterminateVisibility(false);
         dlg.dismiss();
         dlg = null;
     }
