@@ -33,4 +33,10 @@ public class ExWebViewClient extends WebViewClient {
         super.onPageFinished(view, url);
         activity.setProgressBarIndeterminateVisibility(false);
     }
+    
+    @Override
+    public void onReceivedError(WebView view, int errorCode, String description, String url) {
+    	super.onReceivedError(view, errorCode, description, url);
+    	Log.d("ExYoyaku", "WebViewClient: error, url='" + url + "', desc=" + description);
+    }
 }

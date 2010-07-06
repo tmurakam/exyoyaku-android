@@ -15,7 +15,7 @@ import android.util.Log;
 */
 public class ExWebChromeClient extends WebChromeClient {
     private SharedPreferences pref;
-    private View view;
+    private View view;	
     private Dialog dlg;
     
     public ExWebChromeClient(View v) {
@@ -139,4 +139,7 @@ public class ExWebChromeClient extends WebChromeClient {
         wv.loadUrl(js);
         Log.d("ExYoyaku", "exec js: " + js);
     }
+    
+    // debug
+
 }
