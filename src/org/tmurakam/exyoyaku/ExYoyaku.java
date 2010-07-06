@@ -25,38 +25,33 @@ public class ExYoyaku extends Activity {
         // use progress bar
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
+        // WebView 生成
         webView = new WebView(this);
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
-                setProgressBarIndeterminateVisibility(true);
-            }
 
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                setProgressBarIndeterminateVisibility(false);
-            }
-        });
+        // ExWebViewClient を生成
+        webView.setWebViewClient(new ExWebViewClient());
         
+        // ExWebChromeClent を生成
         webChromeClient = new ExWebChromeClient();
         webChromeClient.setPref(pref);
         webView.setWebChromeClient(webChromeClient);
         
+        // WebView レイアウトを設定
         webView.setLayoutParams(new LinearLayout.LayoutParams(
         		LinearLayout.LayoutParams.FILL_PARENT, 
         		LinearLayout.LayoutParams.FILL_PARENT));
         setContentView(webView);
 
+        // WebView 設定を変更
         WebSettings s = webView.getSettings();
         s.setBuiltInZoomControls(true);
         s.setJavaScriptEnabled(true);
 
+        // ページロード
         if (savedInstanceState == null) {
-        	webView.loadUrl("http://expy.jp/member/login/index.html");
+            webView.loadUrl("http://expy.jp/member/login/index.html");
         } else {
-        	webView.restoreState(savedInstanceState);
+            webView.restoreState(savedInstanceState);
         }
     }
     
@@ -78,9 +73,9 @@ public class ExYoyaku extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
     	switch (item.getItemId()) {
     	case 0:
-    		Intent config = new Intent(this, ConfigView.class);
-    		startActivityForResult(config, SHOW_CONFIGVIEW);
-    		break;
+            Intent config = new Intent(this, ConfigView.class);
+            startActivityForResult(config, SHOW_CONFIGVIEW);
+            break;
     	}
     	return super.onOptionsItemSelected(item);
     }
@@ -88,9 +83,9 @@ public class ExYoyaku extends Activity {
     @Override
     protected void onActivityResult(int reqCode, int resCode, Intent data) {
     	if (reqCode == SHOW_CONFIGVIEW) {
-    		if (resCode == RESULT_OK) {
-    			webChromeClient.autoLogin(webView);
-    		}
+            if (resCode == RESULT_OK) {
+                webChromeClient.autoLogin(webView);
+            }
     	}
     }
     
