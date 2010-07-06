@@ -8,6 +8,11 @@ import android.util.Log;
 public class ExWebChromeClient extends WebChromeClient {
     private SharedPreferences pref;
 
+    /**
+       @brief ページ読み込み進行ハンドラ
+
+       100% に達したらページ修正、オートログインなどを実施する
+    */
     @Override
     public void onProgressChanged(WebView wv, int progress) {
         Log.d("ExYoyaku", "onProgressChanged = " + progress + " " + wv.getUrl());
@@ -22,17 +27,27 @@ public class ExWebChromeClient extends WebChromeClient {
         }
     }
 
-    // never interrupt javascript execution
+    /**
+       @brief JavaScript タイムアウトハンドラ
+
+       @note タイムアウトは一切発生させない
+    */
     @Override
     public boolean onJsTimeout() {
         Log.d("ExYoyaku", "onJsTimeout()");
         return false;
     }
 
+    /**
+       @brief プリファレンスのセット
+    */
     public void setPref(SharedPreferences p) {
         pref = p;
     }
     
+    /**
+       @brief オートログイン
+    */
     public boolean autoLogin(WebView wv) {
         String js, fmt;
         
@@ -57,6 +72,9 @@ public class ExWebChromeClient extends WebChromeClient {
         return true;
     }
 
+    /**
+       @brief ページ補正を行う
+    */
     private void fixPage(WebView wv) {
         String js, fmt;
 
@@ -86,6 +104,9 @@ public class ExWebChromeClient extends WebChromeClient {
         runJs(wv, js);
     }
 
+    /**
+       @brief JavaScript 実行
+     */
     private void runJs(WebView wv, String js) {
         wv.loadUrl(js);
         Log.d("ExYoyaku", "exec js: " + js);
