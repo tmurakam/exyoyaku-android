@@ -1,12 +1,12 @@
 package org.tmurakam.exyoyaku;
 
 import android.webkit.*;
-import android.content.SharedPreferences;
+//import android.content.SharedPreferences;
 import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Bitmap;
 
-import android.util.Log;
+//import android.util.Log;
 
 /**
    @brief カスタム WebViewClient
