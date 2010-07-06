@@ -7,14 +7,14 @@ import android.util.Log;
 
 public class ExWebChromeClient extends WebChromeClient {
     private SharedPreferences pref;
-	
+
     @Override
     public void onProgressChanged(WebView wv, int progress) {
         Log.d("ExYoyaku", "onProgressChanged = " + progress + " " + wv.getUrl());
         if (progress != 100) return;
 
         if (autoLogin(wv)) {
-        	return;
+            return;
         }
 
         if (wv.getUrl().indexOf("https://shinkansen1.jr-central.co.jp/RSV_P") >= 0) {
@@ -30,14 +30,14 @@ public class ExWebChromeClient extends WebChromeClient {
     }
 
     public void setPref(SharedPreferences p) {
-    	pref = p;
+        pref = p;
     }
     
     public boolean autoLogin(WebView wv) {
         String js, fmt;
         
         if (wv.getUrl().indexOf("http://expy.jp/member/login") < 0) {
-        	return false;
+        return false;
         }
         
         String uid = pref.getString("UserId", "");
@@ -45,13 +45,13 @@ public class ExWebChromeClient extends WebChromeClient {
 
         // auto login
         for (int i = 1; i <= 2; i++) {
-        	fmt = "javascript:document.getElementById(\"user_id%d\").value=\"%s\"";
-        	js = String.format(fmt, i, uid);
-        	runJs(wv, js);
+            fmt = "javascript:document.getElementById(\"user_id%d\").value=\"%s\"";
+            js = String.format(fmt, i, uid);
+            runJs(wv, js);
 
-        	fmt = "javascript:document.getElementById(\"password%d\").value=\"%s\"";
-        	js = String.format(fmt, i, pass);
-           	runJs(wv, js);
+            fmt = "javascript:document.getElementById(\"password%d\").value=\"%s\"";
+            js = String.format(fmt, i, pass);
+            runJs(wv, js);
         }
         
         return true;
@@ -64,7 +64,7 @@ public class ExWebChromeClient extends WebChromeClient {
             + "var f1 = window.frames[0];"
             + "if (f1) { f1.onresize = undefined; var f2 = f1.frames[0];"
             + "if (f2) { f2.onresize = undefined;";
-		
+
         // style を修正する
         fmt = "e = f2.document.getElementById(\"%s\"); if (e) e.setAttribute(\"style\", \"%s\");";
 
@@ -80,9 +80,9 @@ public class ExWebChromeClient extends WebChromeClient {
         js += "  if (e[i].getAttribute(\"href\") == \" \") {";
         js += "    e[i].setAttribute(\"href\", "javascript:void(0)");";
         js += "}}"
-		
+
         js += "}}";
-			
+
         runJs(wv, js);
     }
 
