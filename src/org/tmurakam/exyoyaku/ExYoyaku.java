@@ -33,7 +33,7 @@ public class ExYoyaku extends Activity {
         webView.setWebViewClient(new ExWebViewClient(this));
         
         // ExWebChromeClent を生成
-        webChromeClient = new ExWebChromeClient();
+        webChromeClient = new ExWebChromeClient(webView);
         webChromeClient.setPref(pref);
         webView.setWebChromeClient(webChromeClient);
         

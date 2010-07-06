@@ -2,6 +2,9 @@ package org.tmurakam.exyoyaku;
 
 import android.webkit.*;
 import android.content.SharedPreferences;
+import android.app.Activity;
+import android.app.Dialog;
+import android.view.View;
 
 import android.util.Log;
 
@@ -12,7 +15,14 @@ import android.util.Log;
 */
 public class ExWebChromeClient extends WebChromeClient {
     private SharedPreferences pref;
-
+    private View view;
+    private Dialog dlg;
+    
+    public ExWebChromeClient(View v) {
+    	view = v;
+    	dlg = null;
+    }
+    
     /**
        @brief ページ読み込み進行ハンドラ
 
@@ -21,14 +31,25 @@ public class ExWebChromeClient extends WebChromeClient {
     @Override
     public void onProgressChanged(WebView wv, int progress) {
         Log.d("ExYoyaku", "onProgressChanged = " + progress + " " + wv.getUrl());
-        if (progress != 100) return;
+        if (progress < 100) {
+        	if (dlg == null) {
+        		dlg = new Dialog(view.getContext());
+        		dlg.setTitle("Loading...");
+        		dlg.show();
+        	}
+        } else {
+        	if (dlg != null) {
+        		dlg.dismiss();
+        		dlg = null;
+        	}
+        
+        	if (autoLogin(wv)) {
+        		return;
+        	}
 
-        if (autoLogin(wv)) {
-            return;
-        }
-
-        if (wv.getUrl().indexOf("https://shinkansen1.jr-central.co.jp/RSV_P") >= 0) {
-            fixPage(wv);
+        	if (wv.getUrl().indexOf("https://shinkansen1.jr-central.co.jp/RSV_P") >= 0) {
+        		fixPage(wv);
+        	}
         }
     }
 
