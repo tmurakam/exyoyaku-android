@@ -19,9 +19,9 @@ public class ExYoyaku extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.main);
-        
+
         SharedPreferences pref = this.getSharedPreferences("userConfig", Activity.MODE_PRIVATE);
-        
+
         webView = new WebView(this);
         //webView.setWebViewClient(new ExWebViewClient());
         webView.setWebViewClient(new WebViewClient());
@@ -78,5 +78,11 @@ public class ExYoyaku extends Activity {
     			webChromeClient.autoLogin(webView);
     		}
     	}
+    }
+    
+    // for rotation change
+    @Override
+    public void onConfigurationChanged(android.content.res.Configuration newConfig) {
+    	super.onConfigurationChanged(newConfig);
     }
 }
