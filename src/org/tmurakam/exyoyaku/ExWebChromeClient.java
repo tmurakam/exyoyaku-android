@@ -3,8 +3,10 @@ package org.tmurakam.exyoyaku;
 import android.webkit.*;
 import android.content.SharedPreferences;
 
-import android.util.Log;public class ExWebChromeClient extends WebChromeClient {
-	private SharedPreferences pref;
+import android.util.Log;
+
+public class ExWebChromeClient extends WebChromeClient {
+    private SharedPreferences pref;
 	
     @Override
     public void onProgressChanged(WebView wv, int progress) {
