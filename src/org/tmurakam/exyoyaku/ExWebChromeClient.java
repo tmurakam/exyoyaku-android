@@ -56,6 +56,7 @@ import android.util.Log;public class ExWebChromeClient extends WebChromeClient {
             + "if (f1) { f1.onresize = undefined; var f2 = f1.frames[0];"
             + "if (f2) { f2.onresize = undefined;";
 		
+        // style を修正する
         fmt = "e = f2.document.getElementById(\"%s\"); if (e) e.setAttribute(\"style\", \"%s\");";
 
         js += String.format(fmt, "top",     "position:absolute; width:auto; float:left;");
@@ -63,6 +64,13 @@ import android.util.Log;public class ExWebChromeClient extends WebChromeClient {
         js += String.format(fmt, "side",    "position:absolute; top:85; left:0; height:auto; float:left;");
         js += String.format(fmt, "guide",   "top:85; width:auto; float:right;");
         js += String.format(fmt, "content", "width:auto; height:auto; float:right;");
+
+        // A タグの href 属性を書き換える
+        js += "e = f2.document.getElementsByTagName(\"a\");";
+        js += "for (var i = 0; i < e.length; i++) {";
+        js += "  if (e[i].getAttribute(\"href\") == \" \") {";
+        js += "    e[i].setAttribute(\"href\", "javascript:void(0)");";
+        js += "}}"
 		
         js += "}}";
 			
