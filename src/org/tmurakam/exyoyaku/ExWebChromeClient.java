@@ -22,6 +22,13 @@ public class ExWebChromeClient extends WebChromeClient {
         }
     }
 
+    // never interrupt javascript execution
+    @Override
+    public boolean onJsTimeout() {
+        Log.d("ExYoyaku", "onJsTimeout()");
+        return false;
+    }
+
     public void setPref(SharedPreferences p) {
     	pref = p;
     }
