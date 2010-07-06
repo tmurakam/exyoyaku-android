@@ -37,12 +37,14 @@ public class ExWebChromeClient extends WebChromeClient {
 
        @note タイムアウトは一切発生させない
     */
+    /* API level 7 (android 2.1) later...
     @Override
     public boolean onJsTimeout() {
         Log.d("ExYoyaku", "onJsTimeout()");
         return false;
     }
-
+     */
+    
     /**
        @brief プリファレンスのセット
     */
