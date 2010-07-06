@@ -22,9 +22,23 @@ public class ExYoyaku extends Activity {
 
         SharedPreferences pref = this.getSharedPreferences("userConfig", Activity.MODE_PRIVATE);
 
+        // use progress bar
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+
         webView = new WebView(this);
-        //webView.setWebViewClient(new ExWebViewClient());
-        webView.setWebViewClient(new WebViewClient());
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                setProgressBarIndeterminateVisibility(true);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                setProgressBarIndeterminateVisibility(false);
+            }
+        });
         
         webChromeClient = new ExWebChromeClient();
         webChromeClient.setPref(pref);
