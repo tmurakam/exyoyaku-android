@@ -5,6 +5,11 @@ import android.content.SharedPreferences;
 
 import android.util.Log;
 
+/**
+   @brief カスタム WebChromeClient
+
+   本アプリの心臓部。オートログイン、画面修正などを行う。
+*/
 public class ExWebChromeClient extends WebChromeClient {
     private SharedPreferences pref;
 
