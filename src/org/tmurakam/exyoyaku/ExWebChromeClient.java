@@ -120,12 +120,12 @@ public class ExWebChromeClient extends WebChromeClient {
         js += String.format(fmt, "guide",   "top:85; width:auto; float:right;");
         js += String.format(fmt, "content", "width:auto; height:auto; float:right;");
 
-        // A タグの href 属性を書き換える
-        js += "e = f2.document.getElementsByTagName(\"a\");";
-        js += "for (var i = 0; i < e.length; i++) {";
-        js += "  if (e[i].getAttribute(\"href\") == \" \") {";
-        js += "    e[i].setAttribute(\"href\", \"javascript:void(0)\");";
-        js += "}}";
+        // A タグの href 属性を書き換える (これはあまり関係なしのようだ)
+        //js += "e = f2.document.getElementsByTagName(\"a\");";
+        //js += "for (var i = 0; i < e.length; i++) {";
+        //js += "  if (e[i].getAttribute(\"href\") == \" \") {";
+        //js += "    e[i].setAttribute(\"href\", \"javascript:void(0)\");";
+        //js += "}}";
 
         js += "}}";
 
@@ -141,5 +141,11 @@ public class ExWebChromeClient extends WebChromeClient {
     }
     
     // debug
-
+    /*
+    @Override
+    public boolean onJsTimeout() {
+    	Log.d("ExYoyaku", "onJsTimeout");
+    	return false;
+    }
+    */
 }
