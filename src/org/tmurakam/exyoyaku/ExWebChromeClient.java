@@ -35,13 +35,15 @@ import android.util.Log;public class ExWebChromeClient extends WebChromeClient {
         String pass = pref.getString("Password", "");
 
         // auto login
-        fmt = "javascript:document.getElementById(\"user_id%d\").value=\"%s\"";
-        js = String.format(fmt, 1, uid);
-        runJs(wv, js);
+        for (int i = 1; i <= 2; i++) {
+        	fmt = "javascript:document.getElementById(\"user_id%d\").value=\"%s\"";
+        	js = String.format(fmt, i, uid);
+        	runJs(wv, js);
 
-        fmt = "javascript:document.getElementById(\"password%d\").value=\"%s\"";
-        js = String.format(fmt, 1, pass);
-        runJs(wv, js);
+        	fmt = "javascript:document.getElementById(\"password%d\").value=\"%s\"";
+        	js = String.format(fmt, i, pass);
+           	runJs(wv, js);
+        }
         
         return true;
     }

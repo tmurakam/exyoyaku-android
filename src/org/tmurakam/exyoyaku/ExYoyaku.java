@@ -39,7 +39,17 @@ public class ExYoyaku extends Activity {
         s.setBuiltInZoomControls(true);
         s.setJavaScriptEnabled(true);
 
-        webView.loadUrl("http://expy.jp/member/login/index.html");
+        if (savedInstanceState == null) {
+        	webView.loadUrl("http://expy.jp/member/login/index.html");
+        } else {
+        	webView.restoreState(savedInstanceState);
+        }
+    }
+    
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+    	super.onSaveInstanceState(outState);
+    	webView.saveState(outState);
     }
     
     @Override
