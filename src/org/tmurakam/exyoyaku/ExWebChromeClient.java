@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.app.Dialog;
 import android.view.View;
-
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 /**
@@ -78,9 +76,9 @@ public class ExWebChromeClient extends WebChromeClient {
         return false;
         }
         
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String uid = prefs.getString("UserId", "");
-        String pass = prefs.getString("Password", "");
+        SharedPreferences prefs = context.getSharedPreferences(PrefActivity.PREF_NAME, Context.MODE_PRIVATE);
+        String uid = prefs.getString(PrefActivity.PREF_KEY_USERID, "");
+        String pass = prefs.getString(PrefActivity.PREF_KEY_PASSWORD, "");
 
         // auto login
         for (int i = 1; i <= 2; i++) {

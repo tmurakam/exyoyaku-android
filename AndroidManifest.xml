@@ -11,7 +11,7 @@
             </intent-filter>
         </activity>
 
-    <activity android:name=".ConfigView" android:label="Config">
+    <activity android:name=".PrefActivity" android:label="Config">
     	
 	</activity>
 </application>
