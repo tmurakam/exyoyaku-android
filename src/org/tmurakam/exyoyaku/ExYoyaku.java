@@ -62,7 +62,7 @@ public class ExYoyaku extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        MenuItem item = menu.add(0, 0, Menu.NONE, "Config");
+        MenuItem item = menu.add(0, 0, Menu.NONE, "設定");
         item.setIcon(android.R.drawable.ic_menu_preferences);
         return true;
     }
@@ -81,9 +81,7 @@ public class ExYoyaku extends Activity {
     @Override
     protected void onActivityResult(int reqCode, int resCode, Intent data) {
         if (reqCode == SHOW_CONFIGVIEW) {
-            if (resCode == RESULT_OK) {
-                webChromeClient.autoLogin(webView);
-            }
+            webChromeClient.autoLogin(webView);
         }
     }
 

@@ -70,10 +70,13 @@ public class ExWebChromeClient extends WebChromeClient {
     public boolean autoLogin(WebView wv) {
         String js, fmt;
 
-        if (wv.getUrl().indexOf("http://expy.jp/member/login") < 0) {
+        // ログインページに居るかどうか確認
+        String url = wv.getUrl();
+        if (url == null || !url.startsWith("http://expy.jp/member/login")) {
             return false;
         }
 
+        // User ID / Pass を取得
         SharedPreferences prefs = context.getSharedPreferences(PrefActivity.PREF_NAME,
                 Context.MODE_PRIVATE);
         String uid = prefs.getString(PrefActivity.PREF_KEY_USERID, "");
