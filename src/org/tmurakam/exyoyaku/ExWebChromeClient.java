@@ -13,7 +13,11 @@ import android.util.Log;
  */
 public class ExWebChromeClient extends WebChromeClient {
     private final static String TAG = "ExYoyaku";
-    
+
+    private final static String LOGIN_URL = "http://expy.jp/member/login";
+
+    private final static String INNER_URL_PREFIX = "https://shinkansen1.jr-central.co.jp/RSV_P";
+
     private View view;
 
     private Dialog dlg;
@@ -48,7 +52,8 @@ public class ExWebChromeClient extends WebChromeClient {
                 return;
             }
 
-            if (wv.getUrl().indexOf("https://shinkansen1.jr-central.co.jp/RSV_P") >= 0) {
+            String url = wv.getUrl();
+            if (url != null && url.startsWith(INNER_URL_PREFIX)) {
                 fixPage(wv);
             }
         }
@@ -72,7 +77,7 @@ public class ExWebChromeClient extends WebChromeClient {
 
         // ログインページに居るかどうか確認
         String url = wv.getUrl();
-        if (url == null || !url.startsWith("http://expy.jp/member/login")) {
+        if (url == null || !url.startsWith(LOGIN_URL)) {
             return false;
         }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
   xmlns:android="http://schemas.android.com/apk/res/android">
-<EditTextPreference android:key="UserId" android:dialogTitle="ユーザID" android:title="ユーザID"/>
-<EditTextPreference android:key="Password" android:dialogTitle="パスワード" android:title="パスワード" android:password="true"/>
+<EditTextPreference android:key="UserId" android:dialogTitle="@string/user_id" android:title="@string/user_id"/>
+<EditTextPreference android:key="Password" android:password="true" android:dialogTitle="@string/password" android:title="@string/password"/>
 </PreferenceScreen>

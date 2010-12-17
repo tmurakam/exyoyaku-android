@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.webkit.*;
 import android.content.Intent;
+import android.view.MenuInflater;
 import android.view.Window;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class ExYoyaku extends Activity {
+    private final static String HOME_URL = "http://expy.jp/member/login/index.html";
+
     private WebView webView;
 
     private ExWebChromeClient webChromeClient;
@@ -47,7 +50,7 @@ public class ExYoyaku extends Activity {
 
         // ページロード
         if (savedInstanceState == null) {
-            webView.loadUrl("http://expy.jp/member/login/index.html");
+            goHome();
         } else {
             webView.restoreState(savedInstanceState);
         }
@@ -59,21 +62,27 @@ public class ExYoyaku extends Activity {
         webView.saveState(outState);
     }
 
+    private void goHome() {
+        webView.loadUrl(HOME_URL);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        MenuItem item = menu.add(0, 0, Menu.NONE, "設定");
-        item.setIcon(android.R.drawable.ic_menu_preferences);
-        return true;
+        new MenuInflater(this).inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case 0:
+            case R.id.menu_home:
+                goHome();
+                return true;
+
+            case R.id.menu_config:
                 Intent config = new Intent(this, PrefActivity.class);
                 startActivityForResult(config, SHOW_CONFIGVIEW);
-                break;
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/menu_home" android:icon="@android:drawable/ic_menu_revert" android:title="@string/login_again"></item>
+<item android:icon="@android:drawable/ic_menu_preferences" android:id="@+id/menu_config" android:title="@string/preferences"></item>
+
+
+
+
+</menu>

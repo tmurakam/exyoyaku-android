@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
-    <string name="app_name">EX予約ブラウザ</string>
+    <string name="app_name">EX Yoyaku Browser</string>
+<string name="preferences">Preferences</string>
+<string name="user_id">User ID</string>
+<string name="password">Password</string>
+<string name="login_again">login again</string>
 </resources>

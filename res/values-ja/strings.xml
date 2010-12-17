@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="app_name">EX予約ブラウザ</string>
+<string name="preferences">設定</string>
+<string name="user_id">ユーザID</string>
+<string name="password">パスワード</string>
+<string name="login_again">再ログイン</string>
+</resources>

@@ -11,14 +11,10 @@
             </intent-filter>
         </activity>
 
-    <activity android:name=".PrefActivity" android:label="Config">
-    	
-	</activity>
-</application>
+    	<activity android:name=".PrefActivity" android:label="設定"/>
+	</application>
+
     <uses-sdk android:minSdkVersion="4" />
-
-
-<uses-permission android:name="android.permission.INTERNET"/>
-
-<supports-screens android:anyDensity="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:largeScreens="true"></supports-screens>
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<supports-screens android:anyDensity="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:largeScreens="true"></supports-screens>
 </manifest> 

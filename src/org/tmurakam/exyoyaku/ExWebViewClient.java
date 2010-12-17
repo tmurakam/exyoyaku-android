@@ -13,7 +13,7 @@ import android.util.Log;
  */
 public class ExWebViewClient extends WebViewClient {
     private final static String TAG = "ExYoyaku";
-    
+
     private Activity activity;
 
     public ExWebViewClient(Activity act) {
