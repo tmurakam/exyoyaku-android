@@ -99,4 +99,10 @@ public class ExYoyaku extends Activity {
     public void onConfigurationChanged(android.content.res.Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
     }
+
+    // page error
+    public void onWebViewError(String url) {
+        // webView.goBack(); // goBack は駄目。ログイン画面に戻ってしまう。
+        // webView.reload(); // これも駄目
+    }
 }

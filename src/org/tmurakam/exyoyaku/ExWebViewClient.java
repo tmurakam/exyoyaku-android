@@ -2,10 +2,7 @@
 package org.tmurakam.exyoyaku;
 
 import android.webkit.*;
-//import android.content.SharedPreferences;
-import android.app.Activity;
 import android.graphics.Bitmap;
-
 import android.util.Log;
 
 /**
@@ -14,9 +11,9 @@ import android.util.Log;
 public class ExWebViewClient extends WebViewClient {
     private final static String TAG = "ExYoyaku";
 
-    private Activity activity;
+    private ExYoyaku activity;
 
-    public ExWebViewClient(Activity act) {
+    public ExWebViewClient(ExYoyaku act) {
         super();
         activity = act;
     }
@@ -37,5 +34,7 @@ public class ExWebViewClient extends WebViewClient {
     public void onReceivedError(WebView view, int errorCode, String description, String url) {
         super.onReceivedError(view, errorCode, description, url);
         Log.d(TAG, "WebViewClient: error, url='" + url + "', desc=" + description);
+
+        activity.onWebViewError(url);
     }
 }
