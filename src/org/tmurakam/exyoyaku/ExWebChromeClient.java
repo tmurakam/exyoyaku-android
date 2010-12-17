@@ -1,11 +1,12 @@
 package org.tmurakam.exyoyaku;
 
 import android.webkit.*;
+import android.content.Context;
 import android.content.SharedPreferences;
-import android.app.Activity;
 import android.app.Dialog;
 import android.view.View;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 /**
@@ -14,12 +15,13 @@ import android.util.Log;
    本アプリの心臓部。オートログイン、画面修正などを行う。
 */
 public class ExWebChromeClient extends WebChromeClient {
-    private SharedPreferences pref;
     private View view;	
     private Dialog dlg;
+    private Context context;
     
-    public ExWebChromeClient(View v) {
-    	view = v;
+    public ExWebChromeClient(Context context, View view) {
+        this.context = context;
+    	this.view = view;
     	dlg = null;
     }
     
@@ -67,13 +69,6 @@ public class ExWebChromeClient extends WebChromeClient {
      */
     
     /**
-       @brief プリファレンスのセット
-    */
-    public void setPref(SharedPreferences p) {
-        pref = p;
-    }
-    
-    /**
        @brief オートログイン
     */
     public boolean autoLogin(WebView wv) {
@@ -83,8 +78,9 @@ public class ExWebChromeClient extends WebChromeClient {
         return false;
         }
         
-        String uid = pref.getString("UserId", "");
-        String pass = pref.getString("Password", "");
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String uid = prefs.getString("UserId", "");
+        String pass = prefs.getString("Password", "");
 
         // auto login
         for (int i = 1; i <= 2; i++) {

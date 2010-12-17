@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.view.Window;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.SharedPreferences;
 
 public class ExYoyaku extends Activity {
     private WebView webView;
@@ -21,8 +20,6 @@ public class ExYoyaku extends Activity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.main);
 
-        SharedPreferences pref = this.getSharedPreferences("userConfig", Activity.MODE_PRIVATE);
-
         // use progress bar
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
@@ -33,8 +30,7 @@ public class ExYoyaku extends Activity {
         webView.setWebViewClient(new ExWebViewClient(this));
         
         // ExWebChromeClent を生成
-        webChromeClient = new ExWebChromeClient(webView);
-        webChromeClient.setPref(pref);
+        webChromeClient = new ExWebChromeClient(this, webView);
         webView.setWebChromeClient(webChromeClient);
         
         // WebView レイアウトを設定
@@ -74,7 +70,7 @@ public class ExYoyaku extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
     	switch (item.getItemId()) {
     	case 0:
-            Intent config = new Intent(this, ConfigView.class);
+            Intent config = new Intent(this, PrefActivity.class);
             startActivityForResult(config, SHOW_CONFIGVIEW);
             break;
     	}
